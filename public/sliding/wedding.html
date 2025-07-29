@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Moments | Wedding Planner</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+       
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .budget-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+        }
+        .elegant-text {
+            font-family: 'Cormorant Garamond', serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white bg-opacity-95 shadow-sm z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-3xl font-semibold text-pink-600">Eternal Moments</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#themes" class="text-gray-700 hover:text-pink-600 transition duration-300">Themes</a>
+                <a href="#services" class="text-gray-700 hover:text-pink-600 transition duration-300">Services</a>
+                <a href="#packages" class="text-gray-700 hover:text-pink-600 transition duration-300">Packages</a>
+                <a href="#vendors" class="text-gray-700 hover:text-pink-600 transition duration-300">Vendors</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-pink-600 transition duration-300">Testimonials</a>
+                <a href="#faq" class="text-gray-700 hover:text-pink-600 transition duration-300">FAQ</a>
+            </div>
+            <div class="flex items-center">
+                <button id="budget-btn" class="bg-pink-600 text-white px-6 py-2 rounded-full hover:bg-pink-700 transition duration-300">
+                    Budget Estimator
+                </button>
+                <button class="md:hidden ml-4 text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    
+    <!-- Wedding Themes -->
+    <section id="themes" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Wedding Themes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <img src="/api/placeholder/600/400" alt="Classic Wedding" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Classic Elegance</h3>
+                        <p class="text-gray-600">Timeless and traditional, our Classic Elegance theme showcases refinement with soft colors and sophisticated décor.</p>
+                    </div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <img src="/api/placeholder/600/400" alt="Rustic Wedding" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Rustic Charm</h3>
+                        <p class="text-gray-600">Warm and inviting, our Rustic Charm theme brings natural elements together with a touch of country romance.</p>
+                    </div>
+                </div>
+                <div class="rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <img src="/api/placeholder/600/400" alt="Beach Wedding" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Beach Paradise</h3>
+                        <p class="text-gray-600">Say "I do" with sand between your toes. Our Beach Paradise theme creates a relaxed yet magical seaside celebration.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12" data-aos="fade-up">
+                <button class="bg-pink-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-pink-700 transition duration-300">View All Themes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-utensils"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Catering</h3>
+                    <p class="text-gray-600">From gourmet cuisine to comfort food, our catering partners provide exceptional dining experiences.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="150">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Lighting & Decor</h3>
+                    <p class="text-gray-600">Create the perfect ambiance with our professional lighting and elegant décor options.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-envelope-open"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Wedding Cards</h3>
+                    <p class="text-gray-600">Beautiful invitation designs that set the tone for your special day.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="250">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-camera"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Photography</h3>
+                    <p class="text-gray-600">Capture every precious moment with our professional photography services.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-paint-brush"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Makeup & Styling</h3>
+                    <p class="text-gray-600">Look your absolute best with our professional makeup artists and stylists.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="350">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-music"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Music & Band</h3>
+                    <p class="text-gray-600">Set the perfect mood with live music or a professional DJ for your celebration.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-user-tie"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Vendor Management</h3>
+                    <p class="text-gray-600">We coordinate with all vendors so you don't have to worry about a thing.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="450">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-car"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Transportation</h3>
+                    <p class="text-gray-600">Luxury transportation for the wedding party and coordination for guests.</p>
+                </div>
+                <div class="service-card bg-white p-6 rounded-lg shadow-md transition duration-300" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-pink-600 text-4xl mb-4"><i class="fas fa-hotel"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Accommodation</h3>
+                    <p class="text-gray-600">Comfortable and convenient accommodation options for out-of-town guests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section id="packages" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Wedding Packages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border rounded-lg overflow-hidden transition duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-pink-100 p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Silver</h3>
+                        <p class="text-4xl font-bold mb-2">$5,999</p>
+                        <p class="text-gray-600">For intimate celebrations</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Venue coordination</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Basic catering (50 guests)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Photography (6 hours)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Simple floral arrangements</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> DJ services</li>
+                        </ul>
+                        <button class="w-full bg-pink-600 text-white mt-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition duration-300">Select Package</button>
+                    </div>
+                </div>
+                <div class="border rounded-lg overflow-hidden shadow-lg transform scale-105 relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-0 right-0 bg-pink-600 text-white py-1 px-4 rounded-bl-lg">Most Popular</div>
+                    <div class="bg-pink-200 p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Gold</h3>
+                        <p class="text-4xl font-bold mb-2">$10,999</p>
+                        <p class="text-gray-600">Our recommended package</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Full wedding planning</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Premium catering (100 guests)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Photography & Videography</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Custom floral designs</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Live band or DJ</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Wedding cake</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Makeup for bride & bridal party</li>
+                        </ul>
+                        <button class="w-full bg-pink-600 text-white mt-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition duration-300">Select Package</button>
+                    </div>
+                </div>
+                <div class="border rounded-lg overflow-hidden transition duration-300 hover:shadow-xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-pink-100 p-6 text-center">
+                        <h3 class="text-2xl font-bold mb-2">Platinum</h3>
+                        <p class="text-4xl font-bold mb-2">$18,999</p>
+                        <p class="text-gray-600">Luxury wedding experience</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Complete luxury planning</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Gourmet catering (150+ guests)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Premium photo & video team</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Elaborate floral installations</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Celebrity band options</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Custom wedding stationery</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Luxury transportation</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Honeymoon planning</li>
+                        </ul>
+                        <button class="w-full bg-pink-600 text-white mt-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition duration-300">Select Package</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Additional Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-right">
+                    <div class="flex items-start">
+                        <div class="text-pink-600 text-4xl mr-4"><i class="fas fa-glass-cheers"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Pre-Wedding Events</h3>
+                            <p class="text-gray-600">Engagement parties, bridal showers, and rehearsal dinners planned to perfection.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-left">
+                    <div class="flex items-start">
+                        <div class="text-pink-600 text-4xl mr-4"><i class="fas fa-plane-departure"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Honeymoon Planning</h3>
+                            <p class="text-gray-600">Create the perfect post-wedding getaway with our experienced travel planners.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-right">
+                    <div class="flex items-start">
+                        <div class="text-pink-600 text-4xl mr-4"><i class="fas fa-theater-masks"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Entertainment Options</h3>
+                            <p class="text-gray-600">From live performers to photo booths and interactive experiences for your guests.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-left">
+                    <div class="flex items-start">
+                        <div class="text-pink-600 text-4xl mr-4"><i class="fas fa-child"></i></div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Children's Services</h3>
+                            <p class="text-gray-600">Babysitting and entertainment options to keep young guests happy and parents worry-free.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vendor Availability -->
+    <section id="vendors" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Check Vendor Availability</h2>
+            <div class="max-w-4xl mx-auto bg-pink-50 rounded-lg p-8 shadow-md" data-aos="fade-up">
+                <form>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2" for="wedding-date">Wedding Date</label>
+                            <input type="date" id="wedding-date" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2" for="vendor-type">Vendor Type</label>
+                            <select id="vendor-type" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600">
+                                <option value="">Select Type</option>
+                                <option value="photographer">Photographer</option>
+                                <option value="caterer">Caterer</option>
+                                <option value="florist">Florist</option>
+                                <option value="dj">DJ/Band</option>
+                                <option value="makeup">Makeup Artist</option>
+                                <option value="venue">Venue</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2" for="location">Location</label>
+                            <input type="text" id="location" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="City or Venue">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-bold mb-2" for="budget">Budget Range</label>
+                            <select id="budget" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600">
+                                <option value="">Select Range</option>
+                                <option value="budget">$500 - $1,000</option>
+                                <option value="mid">$1,000 - $3,000</option>
+                                <option value="premium">$3,000 - $5,000</option>
+                                <option value="luxury">$5,000+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <button type="submit" class="bg-pink-600 text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-pink-700 transition duration-300">Check Availability</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">What Our Couples Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-yellow-400 text-lg mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Our wedding day was absolutely perfect thanks to the Eternal Moments team. They handled every detail with such care and professionalism. We couldn't be happier!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="/api/placeholder/100/100" alt="Client" class="object-cover w-full h-full">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jennifer & Mark</h4>
+                            <p class="text-gray-500 text-sm">Gold Package, June 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-yellow-400 text-lg mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"From the first meeting to the last dance, the Eternal Moments team made our special day truly unforgettable. Their attention to detail and creativity exceeded our expectations."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="/api/placeholder/100/100" alt="Client" class="object-cover w-full h-full">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">David & Sarah</h4>
+                            <p class="text-gray-500 text-sm">Platinum Package, September 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-yellow-400 text-lg mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6">"Planning our wedding was stressful until we found Eternal Moments. They took over and made everything smooth and enjoyable. Our guests are still talking about how beautiful everything was!"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="/api/placeholder/100/100" alt="Client" class="object-cover w-full h-full">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Rachel & Michael</h4>
+                            <p class="text-gray-500 text-sm">Silver Package, April 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="max-w-4xl mx-auto" data-aos="fade-up">
+                <div class="mb-6 border-b pb-6">
+                    <button class="faq-btn flex justify-between items-center w-full text-left">
+                        <span class="text-xl font-semibold">How far in advance should I book your services?</span>
+                        <i class="fas fa-plus text-pink-600"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4">
+                        <p class="text-gray-600">We recommend booking at least 9-12 months in advance for our full-service packages, especially if your wedding is during peak season (May-October). For smaller packages or off-season dates, 6 months may be sufficient. The earlier you book, the better chance you have of securing your preferred vendors!</p>
+                    </div>
+                </div>
+                <div class="mb-6 border-b pb-6">
+                    <button class="faq-btn flex justify-between items-center w-full text-left">
+                        <span class="text-xl font-semibold">What is your cancellation policy?</span>
+                        <i class="fas fa-plus text-pink-600"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4">
+                        <p class="text-gray-600">Our standard policy requires a 25% non-refundable deposit to secure your date. If you cancel 6+ months before your event, you can receive 50% of any additional payments back. Cancellations within 6 months of the event date are non-refundable, though we do offer the option to reschedule once within a 12-month period for a fee.</p>
+                    </div>
+                </div>
+                <div class="mb-6 border-b pb-6">
+                    <button class="faq-btn flex justify-between items-center w-full text-left">
+                        <span class="text-xl font-semibold">Can we customize the packages to fit our needs?</span>
+                        <i class="fas fa-plus text-pink-600"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4">
+                        <p class="text-gray-600">Absolutely! All of our packages can be customized to suit your unique requirements. We understand that every couple has different priorities and visions for their big day. During your initial consultation, we'll discuss what aspects are most important to you, and create a tailored package that fits both your dreams and your budget.</p>
+                    </div>
+                </div>
+                <div class="mb-6 border-b pb-6">
+                    <button class="faq-btn flex justify-between items-center w-full text-left">
+                        <span class="text-xl font-semibold">Do you handle destination weddings?</span>
+                        <i class="fas fa-plus text-pink-600"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4">
+                        <p class="text-gray-600">Yes, we specialize in both local and destination weddings. Our team has experience planning weddings across the country and internationally. For destination weddings, we recommend our Gold or Platinum packages which include travel coordination, local vendor management, and on-site coordination for a stress-free experience.</p>
+                    </div>
+                </div>
+                <div class="mb-6 border-b pb-6">
+                    <button class="faq-btn flex justify-between items-center w-full text-left">
+                        <span class="text-xl font-semibold">How many meetings will we have before the wedding?</span>
+                        <i class="fas fa-plus text-pink-600"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4">
+                        <p class="text-gray-600">The number of meetings depends on your chosen package and needs. Typically, our full-service planning includes an initial consultation, a venue tour, 3-4 vendor meetings, a design review, a final walkthrough, and regular check-ins. We're also available via email and phone throughout the planning process for any questions or concerns.</p>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <button class="faq-btn flex justify-between items-center w-full text-left">
+                        <span class="text-xl font-semibold">Will you be present on our wedding day?</span>
+                        <i class="fas fa-plus text-pink-600"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4">
+                        <p class="text-gray-600">Yes! For all of our packages, your dedicated planner along with assistant coordinators will be present on your wedding day to ensure everything runs smoothly. We typically arrive early for setup and stay until the end of the event to coordinate with vendors, handle any unexpected situations, and make sure you can focus completely on enjoying your special day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-pink-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6">Let's Make Your Dream Wedding a Reality</h2>
+                    <p class="text-gray-600 mb-8">Ready to start planning your perfect day? Contact us for a free consultation and let our team of experienced planners guide you through every step of creating your dream wedding.</p>
+                    <div class="mb-6">
+                        <div class="flex items-center mb-4">
+                            <div class="text-pink-600 text-xl mr-4"><i class="fas fa-map-marker-alt"></i></div>
+                            <p>123 Wedding Lane, Suite 100, Los Angeles, CA 90001</p>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="text-pink-600 text-xl mr-4"><i class="fas fa-phone"></i></div>
+                            <p>(555) 123-4567</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="text-pink-600 text-xl mr-4"><i class="fas fa-envelope"></i></div>
+                            <p>hello@eternalmoments.com</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-pink-600 hover:text-pink-800 text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-pink-600 hover:text-pink-800 text-2xl"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-pink-600 hover:text-pink-800 text-2xl"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="text-pink-600 hover:text-pink-800 text-2xl"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2" data-aos="fade-left">
+                    <div class="bg-white p-8 rounded-lg shadow-md">
+                        <h3 class="text-2xl font-bold mb-6">Request a Consultation</h3>
+                        <form>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-bold mb-2" for="name">Your Name</label>
+                                <input type="text" id="name" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="Full Name">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-bold mb-2" for="email">Email Address</label>
+                                <input type="email" id="email" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="Email">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-bold mb-2" for="phone">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="Phone">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 font-bold mb-2" for="date">Tentative Wedding Date</label>
+                                <input type="date" id="date" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 font-bold mb-2" for="message">Tell Us About Your Vision</label>
+                                <textarea id="message" rows="4" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600" placeholder="Share your wedding vision, guest count, location preferences, etc."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-pink-600 text-white py-3 rounded-full font-semibold hover:bg-pink-700 transition duration-300">Send Request</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Budget Estimator Modal -->
+    <div id="budget-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden budget-modal">
+        <div class="bg-white rounded-lg p-8 max-w-2xl w-full max-h-90vh overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Wedding Budget Estimator</h2>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2">Guest Count</label>
+                    <div class="flex items-center space-x-4">
+                        <input type="range" min="10" max="300" value="100" class="w-full" id="guest-range">
+                        <span id="guest-value" class="font-bold">100</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2" for="venue-type">Venue Type</label>
+                        <select id="venue-type" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600">
+                            <option value="hotel">Hotel/Resort</option>
+                            <option value="garden">Garden/Park</option>
+                            <option value="beach">Beach</option>
+                            <option value="ballroom">Ballroom</option>
+                            <option value="historic">Historic Venue</option>
+                            <option value="destination">Destination</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2" for="season">Wedding Season</label>
+                        <select id="season" class="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-600">
+                            <option value="peak">Peak (May-October)</option>
+                            <option value="off">Off-Peak (November-April)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-bold mb-2">What's Important to You?</label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="food" class="mr-2">
+                            <label for="food">Gourmet Food & Drinks</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="photography" class="mr-2">
+                            <label for="photography">Professional Photography</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="decor" class="mr-2">
+                            <label for="decor">Elaborate Décor & Flowers</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="entertainment" class="mr-2">
+                            <label for="entertainment">Live Entertainment</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="attire" class="mr-2">
+                            <label for="attire">Designer Wedding Attire</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="honeymoon" class="mr-2">
+                            <label for="honeymoon">Luxury Honeymoon</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="calculate-btn" class="w-full bg-pink-600 text-white py-3 rounded-full font-semibold hover:bg-pink-700 transition duration-300 mb-6">Calculate Estimate</button>
+                <div id="estimate-result" class="hidden">
+                    <div class="bg-pink-50 p-4 rounded-lg mb-4">
+                        <h3 class="text-xl font-bold mb-2">Estimated Budget Range:</h3>
+                        <p id="budget-range" class="text-3xl font-bold text-pink-600 mb-2">$25,000 - $35,000</p>
+                        <p class="text-sm text-gray-600">This is a rough estimate based on your selections and current market rates in most U.S. cities.</p>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-bold mb-2">Suggested Budget Breakdown:</h4>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span>Venue & Catering:</span>
+                                <span id="venue-cost" class="font-bold">$15,000 - $20,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Photography & Videography:</span>
+                                <span id="photo-cost" class="font-bold">$3,000 - $5,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Décor & Flowers:</span>
+                                <span id="decor-cost" class="font-bold">$2,500 - $4,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Entertainment:</span>
+                                <span id="entertainment-cost" class="font-bold">$1,500 - $3,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Attire & Beauty:</span>
+                                <span id="attire-cost" class="font-bold">$2,000 - $4,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Miscellaneous:</span>
+                                <span id="misc-cost" class="font-bold">$1,000 - $2,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="button" class="bg-pink-600 text-white px-6 py-2 rounded-full hover:bg-pink-700 transition duration-300">Contact Us for Details</button>
+                        <button type="button" id="recalculate-btn" class="border border-pink-600 text-pink-600 px-6 py-2 rounded-full hover:bg-pink-50 transition duration-300">Recalculate</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap">
+                <div class="w-full md:w-1/4 mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-4">Eternal Moments</h3>
+                    <p class="mb-4">Crafting perfect wedding experiences with love and attention to every detail.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-pink-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-pink-400"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white hover:text-pink-400"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="text-white hover:text-pink-400"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/4 mb-8 md:mb-0">
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-white">Services</a></li>
+                        <li><a href="#packages" class="text-gray-300 hover:text-white">Packages</a></li>
+                        <li><a href="#testimonials" class="text-gray-300 hover:text-white">Testimonials</a></li>
+                        <li><a href="#faq" class="text-gray-300 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-8 md:mb-0">
+                    <h4 class="font-bold mb-4">Our Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Full Wedding Planning</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Day-of Coordination</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Vendor Management</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Destination Weddings</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Honeymoon Planning</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4">
+                    <h4 class="font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>123 Wedding Lane, Suite 100<br>Los Angeles, CA 90001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>(555) 123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>hello@eternalmoments.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Eternal Moments Wedding Planning. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // Toggle answer visibility
+                if (answer.classList.contains('hidden')) {
+                    answer.classList.remove('hidden');
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                } else {
+                    answer.classList.add('hidden');
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            });
+        });
+
+        // Budget Modal
+        const budgetBtn = document.getElementById('budget-btn');
+        const budgetModal = document.getElementById('budget-modal');
+        const closeModal = document.getElementById('close-modal');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const recalculateBtn = document.getElementById('recalculate-btn');
+        const estimateResult = document.getElementById('estimate-result');
+        const guestRange = document.getElementById('guest-range');
+        const guestValue = document.getElementById('guest-value');
+
+        budgetBtn.addEventListener('click', () => {
+            budgetModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            budgetModal.classList.add('hidden');
+        });
+
+        calculateBtn.addEventListener('click', () => {
+            estimateResult.classList.remove('hidden');
+            calculateBtn.classList.add('hidden');
+        });
+
+        recalculateBtn.addEventListener('click', () => {
+            estimateResult.classList.add('hidden');
+            calculateBtn.classList.remove('hidden');
+        });
+
+        guestRange.addEventListener('input', () => {
+            guestValue.textContent = guestRange.value;
+        });
+
+        // Close modal when clicking outside of it
+        window.addEventListener('click', (e) => {
+            if (e.target === budgetModal) {
+                budgetModal.classList.add('hidden');
+            }
+        });
+
+        // Mobile Navigation Toggle (simple version)
+        const mobileMenuBtn = document.querySelector('.md\\:hidden');
+        mobileMenuBtn.addEventListener('click', () => {
+            const mobileMenu = document.querySelector('.hidden.md\\:flex');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'w-full', 'bg-white', 'p-4', 'shadow-lg');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex', 'flex-col', 'absolute', 'top-16', 'left-0', 'w-full', 'bg-white', 'p-4', 'shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>

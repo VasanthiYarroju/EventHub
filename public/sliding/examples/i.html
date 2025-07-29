@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Slider</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+  <style>
+    :root {
+      --primary: #4ade80;
+      --dark-bg: #0f172a;
+    }
+    .swiper-slide-active {
+      border: 2px solid var(--primary);
+      border-radius: 20px;
+      background-color: #1e293b;
+    }
+  </style>
+</head>
+<body class="bg-[--dark-bg] text-white py-20">
+
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-10">Our Portfolio</h2>
+
+    <!-- Swiper -->
+    <div class="swiper portfolioSwiper">
+      <div class="swiper-wrapper">
+
+        <!-- Slide 1 -->
+        <div class="swiper-slide p-4">
+          <div class="rounded-xl overflow-hidden shadow-lg relative">
+            <img src="https://via.placeholder.com/400x300" class="w-full h-64 object-cover" alt="Event" />
+            <div class="absolute bottom-0 bg-gradient-to-t from-black to-transparent w-full p-4">
+              <h3 class="font-bold text-lg">Product Launches</h3>
+              <p class="text-sm text-gray-300">Creating buzz and excitement around your new product with strategically planned launch events.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide p-4">
+          <div class="rounded-xl overflow-hidden shadow-lg relative">
+            <img src="https://via.placeholder.com/400x300" class="w-full h-64 object-cover" alt="Event" />
+            <div class="absolute bottom-0 bg-gradient-to-t from-black to-transparent w-full p-4">
+              <h3 class="font-bold text-lg">Gala Dinners</h3>
+              <p class="text-sm text-gray-300">Elegant evenings curated with class, cuisine, and ambiance to remember.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide p-4">
+          <div class="rounded-xl overflow-hidden shadow-lg relative">
+            <img src="https://via.placeholder.com/400x300" class="w-full h-64 object-cover" alt="Event" />
+            <div class="absolute bottom-0 bg-gradient-to-t from-black to-transparent w-full p-4">
+              <h3 class="font-bold text-lg">Team Building</h3>
+              <p class="text-sm text-gray-300">Boost morale and strengthen connections with impactful group activities.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more slides as needed -->
+        
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="flex justify-center mt-6 gap-4">
+        <button class="swiper-button-prev bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center">
+          &larr;
+        </button>
+        <button class="swiper-button-next bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center">
+          &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.portfolioSwiper', {
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      centeredSlides: true,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2.5,
+        },
+        1024: {
+          slidesPerView: 3.2,
+        },
+      }
+    });
+  </script>
+</body>
+</html>

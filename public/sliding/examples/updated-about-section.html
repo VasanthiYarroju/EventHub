@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Event Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .neon-text {
+      text-shadow: 0 0 2px rgb(255, 255, 255);
+        }
+        .neon-text1{
+            text-shadow: 0 0 5px green;
+        }
+  
+        .header-text {
+            font-family: 'Playfair Display', serif;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-in-out;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        /* 3D Slider Styles */
+        .slider-container {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+        .slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+        }
+        .slide {
+            position: absolute;
+            width: 60%;
+            height: 80%;
+            top: 10%;
+            left: 20%;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.8s ease;
+            border-radius: 0.5rem;
+            cursor: pointer;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slide.active {
+            z-index: 10;
+            transform: translateX(0) scale(1);
+        }
+        .slide.prev {
+            z-index: 6;
+            transform: translateX(-90%) scale(0.85);
+            opacity: 0.8;
+        }
+        .slide.prev-2 {
+            z-index: 6;
+            transform: translateX(-170%) scale(0.7);
+            opacity: 0.6;
+        }
+        .slide.next {
+            z-index: 5;
+            transform: translateX(90%) scale(0.85);
+            opacity: 0.8;
+        }
+        .slide.next-2 {
+            z-index: 4;
+            transform: translateX(170%) scale(0.7);
+            opacity: 0.6;
+        }
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 20;
+        }
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(22, 163, 74, 0.7);
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .nav-btn:hover {
+            background-color: rgba(22, 163, 74, 0.9);
+        }
+        .reflection {
+            position: absolute;
+            bottom: -40%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+            transform: rotateX(180deg) scaleY(0.5);
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        .slider-title {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Slide Info Hover Styles */
+        .slide-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(79, 79, 79, 0.7);
+            padding: 80px;
+            transform: translateY(100%);
+            transition: transform 0.9s ease;
+            color: white;
+            text-align: center;
+        }
+        
+        .slide:hover .slide-info {
+            transform: translateY(0);
+        }
+        
+        .baseline-animation {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .baseline-animation::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4ade80;
+            transition: width 0.6s ease;
+        }
+        
+        .slide:hover .baseline-animation::after {
+            width: 100%;
+        }
+        
+        /* Welcome text above slider, get started button below slider */
+        .welcome-text {
+            position: relative;
+            text-align: center;
+            padding: 2rem;
+            background-color: transparent;
+            margin-bottom: 2rem;
+            bottom: 110px;
+        }
+        
+        .start-button-container {
+            position: absolute;
+            bottom: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 30;
+        }
+        
+       
+        .team-slider-container {
+            width: 100%;
+            height: 100vh;
+            max-height: 800px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 20px 0;
+            padding-top: 0%;
+        }
+        .team-slider-images {
+            display: flex;  
+            align-items: center;
+            gap: 21px;
+        }
+        .team-slider-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        .team-slider-img {
+            width: 90px;
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            transition: 0.7s ease;
+        }
+        .team-slider-images .team-slider-img:first-child, 
+        .team-slider-images .team-slider-img:last-child {
+            height: 460px;
+        }
+        .team-slider-images .team-slider-img:nth-child(2), 
+        .team-slider-images .team-slider-img:nth-child(8) {
+            height: 480px;
+        } 
+        .team-slider-images .team-slider-img:nth-child(3), 
+        .team-slider-images .team-slider-img:nth-child(7) {
+            height: 500px;
+        } 
+        .team-slider-images .team-slider-img:nth-child(4), 
+        .team-slider-images .team-slider-img:nth-child(6) {
+            height: 550px;
+        }
+        .team-slider-images .team-slider-img:nth-child(5){
+            height: 600px ;
+        }
+        .team-slider-img h1 {
+            font-family: "Jost", sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            text-align: left;
+            text-transform: uppercase;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: -10%;
+            right:10%;
+            transform: rotate(270deg);
+            transition: 0.7s ease;
+        }
+        .team-details {
+            position: absolute;
+            bottom: 43px;
+            left: 43px;
+        }
+        .team-details h2 {
+            font-family: "Jost", sans-serif;
+            font-size: 26px;
+            font-weight: 700;
+            text-align: left;
+            line-height: 44px;
+            text-align: left;
+            color: #fff;
+            text-transform: uppercase;
+            transition: 0.9s ease;
+            display: none;
+        }
+        .team-details p {
+            font-family: "Jost", sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: left;
+            line-height: 33px;
+            text-align: left;
+            color: #fff;
+            text-transform: uppercase;
+            transition: 0.7s ease;
+            display: none;
+        }
+        .team-slider-img.active {
+            width: 500px !important;
+            height: 600px !important;
+        }
+        .team-slider-img.active h1 {
+           display: none;
+        }
+        .team-slider-img.active .team-details p, 
+        .team-slider-img.active .team-details h2 {
+          display: block;
+        }
+        
+        /* About section styles */
+        .about-card {
+            background-color: rgba(22, 22, 22, 0.8);
+            border-left: 4px solid #16a34a;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-icon {
+            color: #16a34a;
+            background-color: rgba(22, 163, 74, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-card:hover .about-icon {
+            transform: scale(1.1);
+        }
+        
+        .about-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        .about-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(22, 163, 74, 0.8);
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+        }
+        
+        .about-image-container:hover .about-image-overlay {
+            height: 100%;
+        }
+        
+        .about-counter {
+            background-color: rgba(22, 22, 22, 0.8);
+            transition: transform 0.3s ease;
+        }
+        
+        .about-counter:hover {
+            transform: translateY(-5px);
+        }
+        
+        .counter-number {
+            color: #16a34a;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 1200px) {
+            .team-slider-container {
+                height: auto;
+                padding: 20px;
+            }
+            .team-slider-images {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .team-slider-img.active {
+                width: 80% !important;
+                height: 600px !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .team-slider-img.active {
+                width: 90% !important;
+                height: 400px !important;
+            }
+            .about-section {
+                flex-direction: column;
+            }
+            .about-left, .about-right {
+                width: 100%;
+            }
+        }
+        @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    
+    .animate-scroll {
+      animation: scroll 30s linear infinite;
+    }
+    
+    /* Pause animation on hover */
+    .carousel-container:hover .animate-scroll {
+      animation-play-state: paused;
+    }   
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="relative">
+        <img alt="Decorative event background with flowers and drapes" class="w-full h-screen object-cover opacity-50" height="1080" src="c:/Users/vasan/Downloads/eventhub/gettogether.jpg" width="1920"/>
+        <nav class="absolute top-0 left-0 w-full flex justify-between items-center p-4">
+            <div class="text-2xl cursor-pointer">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="hidden md:flex space-x-6 text-lg">
+                <li><a class="hover:text-gray-400" href="#home">HOME</a></li>
+                <li><a class="hover:text-gray-400" href="#about">ABOUT</a></li>
+                <li><a class="hover:text-gray-400" href="#services">SERVICES</a></li>
+                <li><a class="hover:text-gray-400" href="#contact">CONTACT</a></li>
+                <li><a class="hover:text-gray-400" href="#works">OUR WORKS</a></li>
+                <li><a class="hover:text-gray-400" href="login.html">LOGIN</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Welcome Text Repositioned Above Slider -->
+        <div class="absolute top-1/4 left-0 w-full">
+            <div class="welcome-text">
+                <h1 class="header-text font-bold mb-4 text-Xanada-400 text-4xl md:text-6xl neon-text">Welcome To <span class="text-green-500 neon-text1">EventHub</span> </h1>
+    
+            </div>
+        </div>
+        
+        <!-- 3D Slider Positioned Below Welcome Text -->
+        <div class="absolute bottom-24 left-1/2 transform -translate-x-1/2">
+            <div class="slider-container">
+                
+                <div class="slider-wrapper">
+                    <div class="slides" id="slides">
+                        <!-- Slides will be generated with JavaScript -->
+                    </div>
+                    <div class="reflection"></div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="nav-btn prev-btn" id="prevBtn">&#10094;</button>
+                    <button class="nav-btn next-btn" id="nextBtn">&#10095;</button>
+                </div>
+                
+                <!-- Get Started Button Below Slider -->
+                <div class="start-button-container">
+                    <button class="px-6 py-3 bg-green-600 text-white rounded-full text-lg hover:bg-green-700 transition-transform transform hover:scale-105 shadow-lg hover:shadow-xl">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Team Slider Section (Replaced Services Section) -->
+    <section id="services" class="bg-gray-800 py-20 fade-in">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 slide-in">Our Services</h2>
+            <div class="team-slider-container">
+                <div class="team-slider-images">
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Mike" />
+                        <h1>Mike</h1>
+                        <div class="team-details">
+                            <h2>Mike</h2>
+                            <p>Web3 Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Samite" />
+                        <h1>Samite</h1>
+                        <div class="team-details">
+                            <h2>Samite</h2>
+                            <p>WordPress Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Hashi" />
+                        <h1>Hashi</h1>
+                        <div class="team-details">
+                            <h2>Hashi</h2>
+                            <p>Java Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img active">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Kaity" />
+                        <h1>Kaity</h1>
+                        <div class="team-details">
+                            <h2>Kaity</h2>
+                            <p>Web Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Lauren" />
+                        <h1>Lauren</h1>
+                        <div class="team-details">
+                            <h2>Lauren</h2>
+                            <p>PHP Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Ryan" />
+                        <h1>Ryan</h1>
+                        <div class="team-details">
+                            <h2>Ryan</h2>
+                            <p>SEO Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Dakes" />
+                        <h1>Dakes</h1>
+                        <div class="team-details">
+                            <h2>Dakes</h2>
+                            <p>SQL Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Dakes" />
+                        <h1>Dakes</h1>
+                        <div class="team-details">
+                            <h2>Dakes</h2>
+                            <p>SQL Developer</p>
+                        </div>
+                    </div>
+                    <div class="team-slider-img">
+                        <img src="c:\Users\vasan\Downloads\eventhub\gettogether.jpg" alt="Team Member Dakes" />
+                        <h1>Dakes</h1>
+                        <div class="team-details">
+                            <h2>Dakes</h2>
+                            <p>SQL Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10">
+            <h2 class="text-3xl font-bold text-gray-900">Our Trusted Partners</h2>
+            <p class="mt-4 text-xl text-gray-600">We collaborate with industry leaders to bring you the best events</p>
+          </div>
+          
+          <!-- Infinite Carousel Container -->
+          <div class="carousel-container relative overflow-hidden w-full">
+            <!-- The trick is to duplicate the items and animate them -->
+            <div class="animate-scroll flex items-center whitespace-nowrap">
+              <!-- First set of logos (repeated for infinite effect) -->
+              <div class="flex items-center space-x-12 px-4">
+                <!-- Partner 1 -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Microsoft" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Microsoft</span>
+                </div>
+                
+                <!-- Partner 2 -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Eventbrite" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Eventbrite</span>
+                </div>
+                
+                <!-- Partner 3 -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Adobe" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Adobe</span>
+                </div>
+                
+                <!-- Partner 4 -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Marriott Hotels" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Marriott Hotels</span>
+                </div>
+                
+                <!-- Partner 5 -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Spotify" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Spotify</span>
+                </div>
+                
+                <!-- Partner 6 -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Ticketmaster" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Ticketmaster</span>
+                </div>
+                
+                <!-- Partner 7 -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Square" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Square</span>
+                </div>
+              </div>
+              
+              <!-- Duplicate set for seamless infinite scrolling -->
+              <div class="flex items-center space-x-12 px-4">
+                <!-- Partner 1 (duplicate) -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Microsoft" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Microsoft</span>
+                </div>
+                
+                <!-- Partner 2 (duplicate) -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Eventbrite" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Eventbrite</span>
+                </div>
+                
+                <!-- Partner 3 (duplicate) -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Adobe" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Adobe</span>
+                </div>
+                
+                <!-- Partner 4 (duplicate) -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Marriott Hotels" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Marriott Hotels</span>
+                </div>
+                
+                <!-- Partner 5 (duplicate) -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Spotify" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Spotify</span>
+                </div>
+                
+                <!-- Partner 6 (duplicate) -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Ticketmaster" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Ticketmaster</span>
+                </div>
+                
+                <!-- Partner 7 (duplicate) -->
+                <div class="flex flex-col items-center">
+                  <div class="w-32 h-20 flex items-center justify-center">
+                    <img src="/api/placeholder/120/80" alt="Square" class="max-h-full max-w-full object-contain"/>
+                  </div>
+                  <span class="mt-2 text-sm font-medium text-gray-700">Square</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    <!-- Updated About Section -->
+    <section id="about" class="py-20 fade-in bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-white slide-in">About <span class="text-green-500">EventHub</span></h2>
+                <div class="w-24 h-1 bg-green-500 mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">We specialize in creating extraordinary event experiences that leave lasting impressions. Our dedicated team transforms your vision into unforgettable moments.</p>
+            </div>
+            
+            <!-- Main About Content -->
+            <div class="flex flex-wrap -mx-4 about-section">
+                <!-- Left Column - Image and Description -->
+                <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0 about-left">
+                    <div class="relative about-image-container rounded overflow-hidden mb-8">
+                        <img src="https://storage.googleapis.com/a1aa/image/hIbcoH5NsN39b2swW8qI3U4pOFtlL0kRxk1nsO1OYvA.jpg" alt="Event planning team" class="w-full h-auto object-cover rounded shadow-lg">
+                        <div class="about-image-overlay flex items-center justify-center">
+                            <div class="text-center p-6">
+                                <i class="fas fa-star text-white text-3xl mb-4"></i>
+                                <h3 class="text-xl font-bold text-white mb-2">Premium Event Services</h3>
+                                <p class="text-white">Crafting extraordinary experiences since 2015</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Turning Your Vision Into Reality</h3>
+                    <p class="text-gray-300 mb-4">At EventHub, we understand that each event is unique and deserves personalized attention. Our approach combines creativity, precision, and attention to detail to deliver experiences that exceed expectations.</p>
+                    <p class="text-gray-300 mb-6">With years of experience in event management, our team has developed a streamlined process that ensures every aspect of your event is carefully planned and executed to perfection.</p>
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-500 mr-4 flex items-center justify-center">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                        <p class="text-gray-300">Professional team with over 10 years of experience</p>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-500 mr-4 flex items-center justify-center">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                        <p class="text-gray-300">Customized solutions for events of all sizes</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 rounded-full bg-green-500 mr-4 flex items-center justify-center">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                        <p class="text-gray-300">End-to-end event management services</p>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Features and Stats -->
+                <div class="w-full lg:w-1/2 px-4 about-right">
+                    <!-- Feature Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                        <div class="p-6 rounded-lg about-card">
+                            <div class="w-16 h-16 rounded-full about-icon flex items-center justify-center mb-4">
+                                <i class="fas fa-calendar-alt text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-2">Event Planning</h4>
+                            <p class="text-gray-400">Comprehensive planning from concept to execution for flawless events.</p>
+                        </div>
+                        <div class="p-6 rounded-lg about-card">
+                            <div class="w-16 h-16 rounded-full about-icon flex items-center justify-center mb-4">
+                                <i class="fas fa-palette text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-2">Creative Design</h4>
+                            <p class="text-gray-400">Innovative themes and aesthetic designs that captivate your audience.</p>
+                        </div>
+                        <div class="p-6 rounded-lg about-card">
+                            <div class="w-16 h-16 rounded-full about-icon flex items-center justify-center mb-4">
+                                <i class="fas fa-utensils text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-2">Catering Excellence</h4>
+                            <p class="text-gray-400">Delectable culinary experiences tailored to your preferences.</p>
+                        </div>
+                        <div class="p-6 rounded-lg about-card">
+                            <div class="w-16 h-16 rounded-full about-icon flex items-center justify-center mb-4">
+                                <i class="fas fa-headset text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-white mb-2">24/7 Support</h4>
+                            <p class="text-gray-400">Dedicated support team available throughout your event journey.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Counters -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-6 rounded-lg about-counter text-center">
+                            <div class="counter-number mb-2">500+</div>
+                            <p class="text-gray-300">Events Organized</p>
+                        </div>
+                        <div class="p-6 rounded-lg about-counter text-center">
+                            <div class="counter-number mb-2">50+</div>
+                            <p class="text-gray-300">Corporate Partners</p>
+                        </div>
+                        <div class="p-6 rounded-lg about-counter text-center">
+                            <div class="counter-number mb-2">98%</div>
+                            <p class="text-gray-300">Client Satisfaction</p>
+                        </div>
+                        <div class="p-6 rounded-lg about-counter text-center">
+                            <div class="counter-number mb-2">20+</div>
+                            <p class="text-gray-300">Industry Awards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Banner -->
+            <div class="mt-16 py-12 px-6 rounded-lg bg-gradient-to-r from-green-800 to-green-600 text-center">
+                <h3 class="text-2xl font-bold text-white mb-4">Ready to Create Your Perfect Event?</h3>
+                <p class="text-white mb-6 max-w-2xl mx-auto">Let our team of experts help you design and execute an unforgettable experience.</p>
+                <button class="px-8 py-3 bg-white text-green-700 rounded-full text-lg font-bold hover:bg-gray-100 transition-transform transform hover:scale-105 shadow-lg hover:shadow-xl">Schedule Consultation</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 fade-in">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 slide-in">Contact Us</h2>
+            <p class="text-lg mb-4">Have questions or want to start planning your event? Get in touch with us!</p>
+            <form class="max-w-lg mx-auto">
+                <input type="text" placeholder="Your Name" class="w-full p-3 mb-4 rounded bg-gray-700 text-white" required />
+                <input type="email" placeholder="Your Email" class="w-full p-3 mb-4 rounded bg-gray-700 text-white" required />
+                <textarea placeholder="Your Message" class="w-full p-3 mb-4 rounded bg-gray-700 text-white" rows="4" required></textarea>
+                <button type="submit" class="px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition-transform transform hover:scale-105 shadow-lg hover:shadow-xl">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 py-10">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400">© 2023 Event Hub. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="jQuery.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    
+    const slideData = [
+        {
+            image: 'c:/Users/vasan/Downloads/eventhub/EVENTHUB.png',
+            title: 'Weddings',
+            info: 'Create your dream wedding day with our full-service wedding planning and coordination.'
+        },
+        {
+            image: 'c:/Users/vasan/Downloads/sliding/housewarming.jpg',
+            title: 'HouseWarming Parties',
+            info: 'Create your dream House with our full-service .'
+        },
+        {
+            image: 'C:/Users/vasan/Downloads/eventhub/birthday.jpg',
+            title: 'Birthday Parties',
+            info: 'Celebrate your special day with customized themes and entertainment options.'
+        },
+        {
+            image: 'c:/Users/vasan/Downloads/eventhub/culturalevents.jpg',
+            title: 'Concerts & Festivals',
+            info: 'Large-scale event management with professional sound and lighting production.'
+        },
+        {
+            image: 'c:/Users/vasan/Downloads/eventhub/gettogether.jpg',
+            title: 'Social Gatherings',
+            info: 'From intimate dinners to grand galas, we create memorable social experiences.'
+        }
+    ];
+
+    
+    const slidesContainer = document.getElementById('slides');
+    
+    slideData.forEach((slide, index) => {
+        const slideElement = document.createElement('div');
+        slideElement.className = 'slide';
+        slideElement.setAttribute('data-index', index);
+        
+        slideElement.innerHTML = `
+            <img src="${slide.image}" alt="${slide.title}">
+            <div class="slide-info">
+                <h3 class="text-xl font-bold mb-2 baseline-animation">${slide.title}</h3>
+                <p>${slide.info}</p>
+            </div>
+        `;
+        
+        slidesContainer.appendChild(slideElement);
+    });
+
+    
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    
+    function updateSlidePositions() {
+        slides.forEach((slide, index) => {
+            slide.className = 'slide';
+            
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            } else if (index === (currentSlide - 1 + totalSlides) % totalSlides) {
+                slide.classList.add('prev');
+            } else if (index === (currentSlide - 2 + totalSlides) % totalSlides) {
+                slide.classList.add('prev-2');
+            } else if (index === (currentSlide + 1) % totalSlides) {
+                slide.classList.add('next');
+            } else if (index === (currentSlide + 2) % totalSlides) {
+                slide.classList.add('next-2');
+            }
+        });
+    }
+
+    
+    updateSlidePositions();
+
+    
+    prevBtn.addEventListener('click', function() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlidePositions();
+    });
+
+    nextBtn.addEventListener('click', function() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlidePositions();
+    });
+
+    
+    let autoSlideInterval = setInterval(function() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlidePositions();
+    }, 5000);
+
+    
+    const sliderContainer = document.querySelector('.slider-container');
+    sliderContainer.addEventListener('mouseenter', function() {
+        clearInterval(autoSlideInterval);
+    });
+
+    sliderContainer.addEventListener('mouseleave', function() {
+        autoSlideInterval = setInterval(function() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlidePositions();
+        }, 5000);
+    });
+
+    
+    slides.forEach((slide) => {
+        slide.addEventListener('click', function() {
+            const clickedIndex = parseInt(this.getAttribute('data-index'));
+            currentSlide = clickedIndex;
+            updateSlidePositions();
+        });
+    });
+
+    
+    const teamSliderImgs = document.querySelectorAll('.team-slider-img');
+    
+    teamSliderImgs.forEach(img => {
+        img.addEventListener('click', function() {
+            
+            teamSliderImgs.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            
+            this.classList.add('active');
+        });
+    });
+
+   
+    const counterElements = document.querySelectorAll('.counter-number');
+    
+    
+    function animateCounter(element) {
+        const target = element.innerText;
+        const targetNum = parseInt(target.replace(/[^\d.-]/g, ''));
+        const duration = 2000; 
+        const stepTime = 50; 
+        const steps = duration / stepTime;
+        const increment = targetNum / steps;
+        let current = 0;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            
+            if (current >= targetNum) {
+                clearInterval(timer);
+                element.innerText = target; // Set the final value with any suffix
+            } else {
+                // If the target has a plus sign, add it back during animation
+                if (target.includes('+')) {
+                    element.innerText = Math.floor(current) + '+';
+                } else if (target.includes('%')) {
+                    element.innerText = Math.floor(current) + '%';
+                } else {
+                    element.innerText = Math.floor(current);
+                }
+            }
+        }, stepTime);
+    }
+    
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target); 
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    
+    counterElements.forEach(counter => {
+        counterObserver.observe(counter);
+    });
+});
+</script>
+</body>
+</html>

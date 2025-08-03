@@ -1,0 +1,248 @@
+/* src/components/Estimate.css */
+
+/* --- Custom Color Palette & Global Styles --- */
+:root {
+  --primary: #5b6946;
+  --text: #3B2C2C;
+  --secondary: #faf3dd;
+  --background: #fff;
+  --dark: #1e1e1e;
+  --gray: #ccc;
+  --primary-dark: #4b553c;
+}
+
+.estimate-page {
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 1rem;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@media (min-width: 640px) {
+  .estimate-page {
+    padding: 2rem;
+  }
+}
+
+/* --- Wrapper and Header --- */
+.estimate-container {
+  max-width: 64rem; /* Equivalent to Tailwind's max-w-5xl */
+  margin: 0 auto;
+}
+
+.main-title {
+  font-size: 2.25rem; /* 4xl */
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.sub-title {
+  font-size: 1.5rem; /* 2xl */
+  font-weight: 300;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .main-title {
+    font-size: 3rem; /* 5xl */
+  }
+  .sub-title {
+    font-size: 1.875rem; /* 3xl */
+  }
+}
+
+/* --- Form Card and Layout --- */
+.form-card {
+  background-color: var(--secondary);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 640px) {
+  .form-card {
+    padding: 2rem;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem; /* Gap for rows and columns */
+}
+
+/* On medium screens and up, switch to a two-column grid */
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+  .fieldset-full-width {
+    grid-column: 1 / -1; /* Make an element span both columns */
+  }
+}
+
+/* --- Form Elements Styling --- */
+.form-group label,
+.fieldset-legend {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.form-input,
+.form-select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--gray);
+  border-radius: 0.375rem;
+  background-color: var(--background);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-dark);
+}
+
+/* Radio and Checkbox Groups */
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.radio-item, .checkbox-item {
+  display: flex;
+  align-items: center;
+}
+.radio-item input, .checkbox-item input {
+  margin-right: 0.5rem;
+  height: 1rem;
+  width: 1rem;
+  accent-color: var(--primary);
+}
+
+/* --- Totals and Actions Section --- */
+.totals-section {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(91, 105, 70, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .totals-section {
+    flex-direction: row;
+  }
+}
+
+.total-cost-display {
+  text-align: center;
+}
+@media (min-width: 640px) {
+  .total-cost-display {
+    text-align: left;
+  }
+}
+
+.total-cost-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.total-cost-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.025em;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.75rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--secondary);
+  background-color: var(--primary);
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+.submit-button:hover {
+  background-color: var(--primary-dark);
+}
+.submit-button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px var(--primary-dark);
+}
+.submit-button:disabled {
+  background-color: var(--gray);
+  cursor: not-allowed;
+}
+
+@media (min-width: 640px) {
+  .submit-button {
+    width: auto;
+  }
+}
+
+/* --- Success Message --- */
+.success-message {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--secondary);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+.success-message svg {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto;
+  color: var(--primary);
+}
+.success-message h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 1rem;
+}
+.success-message p {
+  color: var(--text);
+  margin-top: 0.5rem;
+}
+.success-message button {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--primary);
+  color: var(--secondary);
+  font-weight: 600;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.success-message button:hover {
+  background-color: var(--primary-dark);
+}

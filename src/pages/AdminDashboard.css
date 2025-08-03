@@ -1,0 +1,185 @@
+/* src/styles/AdminDashboard.css */
+
+:root {
+  --bg-color: #f0f2f5;
+  --card-bg: #ffffff;
+  --text-color: #333;
+  --primary-color: #4a90e2;
+  --primary-text: #ffffff;
+  --border-color: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.admin-dashboard {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif; /* Add this font to your index.html for a premium feel */
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.header-brand h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.logout-button {
+  background-color: var(--primary-color);
+  color: var(--primary-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #357abd;
+}
+
+/* Main Content */
+.admin-main-content {
+  padding: 2rem;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.toolbar h2 {
+  margin: 0;
+}
+
+.filter-input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  min-width: 300px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+/* Table and Cards */
+.table-container {
+  overflow-x: auto;
+}
+.bookings-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1rem; /* This creates the space between rows */
+}
+
+.bookings-table thead {
+  display: none; /* Hide traditional header, use card layout instead */
+}
+
+.booking-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+}
+
+.booking-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.booking-card td {
+  border: none;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-card td strong {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.booking-card td span {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.user-info, .event-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Status Select */
+.status-select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.status-pending { background-color: #fffbe6; color: #f59e0b; }
+.status-approved { background-color: #f0fdf4; color: #16a34a; }
+.status-rejected { background-color: #fef2f2; color: #ef4444; }
+
+.no-bookings-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  padding: 4rem;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .booking-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .booking-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-main-content { padding: 1rem; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .filter-input { width: 100%; min-width: unset; }
+  .booking-card {
+    grid-template-columns: 1fr; /* Stack everything */
+    padding: 1.5rem;
+  }
+  .booking-card td {
+    padding: 0.5rem 0;
+  }
+}

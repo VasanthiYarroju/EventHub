@@ -1,14 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
+// Import Link and useNavigate from react-router-dom
+import { Link, useNavigate } from 'react-router-dom';
+import PasscodeModal from '../components/PasscodeModal';
+import { useAuth } from '../context/AuthContext';
+
 
 function HomePage() {
  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // State for "View All Services" button and hidden services visibility
   const [showHiddenServices, setShowHiddenServices] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const { login } = useAuth();
 
   // Refs for DOM elements
   const teamSliderRef = useRef(null);
   const counterRefs = useRef([]);
+  const servicesRef = useRef(null);
+
+  // Hook for programmatic navigation
+  const navigate = useNavigate();
+
+
+  const handleLoginSuccess = () => {
+    login(); 
+    setShowModal(false);
+    navigate('/admin'); 
+  };
 
   // All CSS is now defined here, removing the need for Tailwind CSS.
   const allStyles = `
@@ -132,7 +149,7 @@ function HomePage() {
         padding: 2.5rem 0;
     }
     .nav-container { display: flex; justify-content: space-between; align-items: center; }
-    .nav-logo { display: flex; align-items: center;margin-left:80px;margin-top:-20px }
+    .nav-logo { display: flex; align-items: center;margin-left:-90px;margin-top:-20px }
     .nav-logo-text { font-size: 1.75rem; font-weight: 800; color: #252c37ff; }
     .nav-logo-text span { color: var(--primary); }
 
@@ -386,6 +403,7 @@ function HomePage() {
     @keyframes slideIn { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
   `;
 
+  // ... (keep all the existing useEffect hooks)
   // useEffect for AOS initialization
   useEffect(() => {
     if (window.AOS) {
@@ -465,6 +483,7 @@ function HomePage() {
     return () => anchors.forEach(anchor => anchor.removeEventListener('click', handleClick));
   }, []);
 
+
   const allServices = [
     { rank: 5, img: "https://picsum.photos/seed/babyshower/400/300", alt: "Baby Shower", title: "Baby Shower", desc: "Celebrating new life", details: "Cherish the precious moments of welcoming a new life with our thoughtfully designed baby shower services." },
     { rank: 6, img: "https://picsum.photos/seed/cradle/400/300", alt: "Cradle Ceremony", title: "Cradle Ceremony", desc: "Traditional blessings", details: "Experience the rich cultural significance of the cradle ceremony, a time-honored tradition of blessing and welcoming a newborn." },
@@ -481,16 +500,24 @@ function HomePage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: allStyles }} />
 
+      {/* --- RENDER MODAL --- */}
+      {/* Conditionally render the modal and pass the handler functions as props */}
+     {showModal && (
+        <PasscodeModal
+          onClose={() => setShowModal(false)}
+          onSuccess={handleLoginSuccess}
+        />
+      )}
+
       <header id="home" className="header" style={{ backgroundImage: `url(/images/hero_back.png)` }}>
         <div className="hero-gradient-overlay"></div>
 
         <nav className="header-nav">
+          <div className="container nav-container">
             <div className="nav-logo">
               <span className="nav-logo-text">Event<span>Hub</span></span>
             </div>
-          <div className="container nav-container">
             
-
             <div className="desktop-nav-wrapper">
               <div className="glass-nav">
                 <a className="nav-link" href="#home">Home</a>
@@ -499,7 +526,8 @@ function HomePage() {
                 <a className="nav-link" href="#portfolio">Portfolio</a>
                 <a className="nav-link" href="#testimonials">Testimonials</a>
                 <a className="nav-link" href="#contact">Contact</a>
-                <button className="btn-secondary">Login</button>
+                {/* --- UPDATE: Add onClick to open modal --- */}
+                <button className="btn-secondary" onClick={() => setShowModal(true)}>Login</button>
               </div>
             </div>
 
@@ -517,10 +545,15 @@ function HomePage() {
             <a href="#portfolio" onClick={() => setIsMobileMenuOpen(false)}>Portfolio</a>
             <a href="#testimonials" onClick={() => setIsMobileMenuOpen(false)}>Testimonials</a>
             <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
-            <button className="btn-secondary">Login</button>
+             {/* --- UPDATE: Add onClick to open modal and close menu --- */}
+            <button className="btn-secondary" onClick={() => {
+              setShowModal(true);
+              setIsMobileMenuOpen(false);
+            }}>Login</button>
           </div>
         </nav>
-
+        
+        {/* The rest of your JSX remains the same */}
         <div className="container hero-content-wrapper">
           <div className="hero-content slide-in">
             
@@ -530,8 +563,10 @@ function HomePage() {
             </h1>
             <p>From intimate gatherings to grand celebrations, EventHub delivers exceptional experiences tailored to your vision. Let us transform your dreams into reality.</p>
             <div className="button-group">
-              <button className="btn-primary">Start Planning</button>
-              <button className="btn-secondary">Explore Services</button>
+              <Link to="/estimate">
+                 <button className="btn-primary">Start Planning</button>
+              </Link>
+              <button className="btn-secondary" onClick={() => servicesRef.current?.scrollIntoView({ behavior: 'smooth' })}>Explore Services</button>
             </div>
           </div>
         </div>
@@ -541,7 +576,7 @@ function HomePage() {
 
       <main>
         {/* Services Section */}
-        <section id="services" className="section-padding">
+        <section ref={servicesRef} id="services" className="section-padding">
           <div className="container">
             <div className="section-heading" data-aos="fade-up">
               <h5>What We Offer</h5>

@@ -21,7 +21,7 @@ const UserInfoModal = ({ isOpen, onRequestClose, booking, onUpdateAdminNotes }) 
     }
   };
 
-  if (!booking) {
+  if (!isOpen || !booking) {
     return null;
   }
 

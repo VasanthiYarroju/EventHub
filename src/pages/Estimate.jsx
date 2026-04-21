@@ -11,6 +11,8 @@ import {
   getAvailableEvents
 } from '../config/EVENT_CONFIG';
 
+const API_URL = process.env.REACT_APP_API_URL || '/api/bookings';
+
 
 const SuccessMessage = ({ onReset }) => (
   <div className="success-message">
@@ -127,7 +129,7 @@ const Estimate = () => {
       try {
         // --- THIS IS THE NEW PART ---
         // Send the data to your backend API endpoint
-        const response = await fetch('http://localhost:5000/api/bookings', {
+        const response = await fetch(API_URL, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

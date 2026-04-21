@@ -4,7 +4,12 @@ import express from 'express';
 // import Booking from '../models/booking.js'; 
 
 // Import the controller functions
-import { getAllBookings, createBooking } from '../controllers/bookingController.js'; 
+import {
+	getAllBookings,
+	createBooking,
+	updateBookingStatus,
+	updateBookingNotes,
+} from '../controllers/bookingController.js'; 
 
 const router = express.Router();
 
@@ -25,6 +30,16 @@ router.get('/', getAllBookings);
 //
 // Your existing POST route can be simplified to just this line:
 router.post('/', createBooking);
+
+
+// --- UPDATE BOOKING STATUS ---
+// @route   PATCH /api/bookings/:id/status
+router.patch('/:id/status', updateBookingStatus);
+
+
+// --- UPDATE ADMIN NOTES ---
+// @route   PATCH /api/bookings/:id/notes
+router.patch('/:id/notes', updateBookingNotes);
 
 
 

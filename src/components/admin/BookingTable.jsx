@@ -54,7 +54,7 @@ const BookingTable = ({ bookings, onStatusChange, onCustomerClick, onAdminNotesC
               <td>
                 <select
                   className={`status-select status-${(booking.status || 'Pending').toLowerCase()}`}
-                  value={booking.status}
+                  value={booking.status || 'Pending'}
                   onChange={(e) => onStatusChange(booking._id, e.target.value)}
                 >
                   <option value="Pending">Pending</option>

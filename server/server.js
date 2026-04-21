@@ -6,6 +6,7 @@ import bookingRoutes from './routes/BookingRoutes.js';
 
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -24,11 +25,14 @@ if (!mongoUri) {
 }
 
 
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
 mongoose.connect(mongoUri)
   .then(() => {
     console.log('MongoDB connected successfully.');
-    app.listen(5000, () => console.log('Server running on port 5000'));
   })
   .catch(err => {
     console.error('MongoDB connection error:', err.message);
+    console.warn('API server is running, but database-dependent endpoints may fail until MongoDB is reachable.');
   });

@@ -17,7 +17,7 @@ import UserInfoModal from '../components/admin/UserInfoModal';
 import '../pages/AdminDashboard.css'; // Import your main CSS
 
 // Define your API URL
-const API_URL = 'http://localhost:5000/api/bookings';
+const API_URL = process.env.REACT_APP_API_URL || '/api/bookings';
 
 const AdminDashboard = () => {
   const [bookings, setBookings] = useState([]);
@@ -58,6 +58,7 @@ const AdminDashboard = () => {
   // Ref to store IDs of previously seen bookings for new booking notifications
   const previousBookingIds = useRef(new Set());
   const newBookingToastId = useRef(null); // Ref for the toast ID to prevent duplicate "new booking" toasts
+  const hasShownConnectionToast = useRef(false);
 
 
   // --- Data Fetching Logic (from your provided code, with notification enhancement) ---
@@ -95,10 +96,15 @@ const AdminDashboard = () => {
       }
 
       setBookings(data);
+      setError(null);
+      hasShownConnectionToast.current = false;
       previousBookingIds.current = currentBookingIds; // Update the set of known IDs
     } catch (err) {
       setError(err.message);
-      toast.error(`Error fetching bookings: ${err.message}`);
+      if (!hasShownConnectionToast.current) {
+        toast.error(`Error fetching bookings: ${err.message}`);
+        hasShownConnectionToast.current = true;
+      }
     } finally {
       setIsLoading(false);
     }
@@ -107,12 +113,16 @@ const AdminDashboard = () => {
   useEffect(() => {
     fetchBookings(); // Fetch once on component mount
 
+    if (error) {
+      return undefined;
+    }
+
     // Set up polling for real-time updates every 5 seconds
     const intervalId = setInterval(fetchBookings, 5000);
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, [fetchBookings]); // Depend on fetchBookings to re-run interval if callback changes
+  }, [fetchBookings, error]); // Depend on error to stop polling while API is unavailable
 
   const handleLogout = useCallback(() => {
     console.log("Logged out");
@@ -177,9 +187,12 @@ const AdminDashboard = () => {
 
 
   const handleOpenModal = useCallback((booking) => {
+    if (isModalOpen && selectedBooking?._id === booking?._id) {
+      return;
+    }
     setSelectedBooking(booking);
     setIsModalOpen(true);
-  }, []);
+  }, [isModalOpen, selectedBooking]);
 
   const handleCloseModal = useCallback(() => {
     setSelectedBooking(null);

@@ -11,6 +11,15 @@ const bookingSchema = new mongoose.Schema({
   cateringPackage: { type: String, required: true },
   extraServices: { type: Map, of: Boolean }, 
   totalEstimatedCost: { type: Number, required: true },
+  status: {
+    type: String,
+    enum: ['Pending', 'Approved', 'Rejected'],
+    default: 'Pending',
+  },
+  adminNotes: {
+    type: String,
+    default: '',
+  },
   bookingDate: { type: Date, default: Date.now },
 });
 

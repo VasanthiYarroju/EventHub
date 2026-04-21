@@ -1,4 +1,4 @@
-import Booking from '../models/Booking.js'; // Import the model you just showed me
+import Booking from '../models/booking.js';
 import mongoose from 'mongoose';
 
 const isDatabaseReady = () => mongoose.connection.readyState === 1;

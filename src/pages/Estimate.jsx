@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import './Estimate.css'; // Your existing stylesheet
-
+import './Estimate.css'; 
 import {
   EVENT_CONFIG,
   VENUE_COST_PER_GUEST,

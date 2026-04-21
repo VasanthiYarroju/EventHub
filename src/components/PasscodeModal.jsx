@@ -10,7 +10,7 @@ function PasscodeModal({ onClose, onSuccess }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (passcode === CORRECT_PASSCODE) {
-      // If correct, call the onSuccess function passed from HomePage
+      
       onSuccess();
     } else {
       // If incorrect, show an error and clear the input

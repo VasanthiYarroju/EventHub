@@ -601,10 +601,10 @@ function HomePage() {
               <p>Explore our most requested event categories that are setting trends and creating lasting memories.</p>
             </div>
             <div className="grid-container grid-cols-lg-4 grid-cols-md-2">
-              <div className="event-card fade-in" style={{ animationDelay: '0.1s' }}><div className="event-rank">1</div><img src="/images/w1.jpg" alt="Luxury Weddings" /><div className="event-card-title-overlay"><h3>Luxury Weddings</h3><p>Our most popular service</p></div><div className="event-overlay"><p>Create your dream wedding with our premium planning services, attention to detail, and exquisite decorations.</p><a href="#" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
-              <div className="event-card fade-in" style={{ animationDelay: '0.2s' }}><div className="event-rank">2</div><img src="/images/b1.jpg" alt="Birthday Parties" /><div className="event-card-title-overlay"><h3>Birthday Parties</h3><p>Unique and creative</p></div><div className="event-overlay"><p>From vintage to futuristic, our birthday parties come with custom decorations, entertainment, and catering.</p><a href="#" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
-              <div className="event-card fade-in" style={{ animationDelay: '0.3s' }}><div className="event-rank">3</div><img src="/images/c1.jpg" alt="Cultural Events" /><div className="event-card-title-overlay"><h3>Cultural Events</h3><p>Cultural Excellence</p></div><div className="event-overlay"><p>From any season to any occasion, our cultural events are designed to boost team morale and productivity.</p><a href="#" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
-              <div className="event-card fade-in" style={{ animationDelay: '0.4s' }}><div className="event-rank">4</div><img src="/images/f1.jpg" alt="Festival Planning" /><div className="event-card-title-overlay"><h3>Festival Planning</h3><p>Large-scale events</p></div><div className="event-overlay"><p>From music festivals to cultural celebrations, we handle all aspects of large-scale event production.</p><a href="#" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
+              <div className="event-card fade-in" style={{ animationDelay: '0.1s' }}><div className="event-rank">1</div><img src="/images/w1.jpg" alt="Luxury Weddings" /><div className="event-card-title-overlay"><h3>Luxury Weddings</h3><p>Our most popular service</p></div><div className="event-overlay"><p>Create your dream wedding with our premium planning services, attention to detail, and exquisite decorations.</p><a href="/estimate/wedding" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
+              <div className="event-card fade-in" style={{ animationDelay: '0.2s' }}><div className="event-rank">2</div><img src="/images/b1.jpg" alt="Birthday Parties" /><div className="event-card-title-overlay"><h3>Birthday Parties</h3><p>Unique and creative</p></div><div className="event-overlay"><p>From vintage to futuristic, our birthday parties come with custom decorations, entertainment, and catering.</p><a href="/estimate/birthday-party" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
+              <div className="event-card fade-in" style={{ animationDelay: '0.3s' }}><div className="event-rank">3</div><img src="/images/c1.jpg" alt="Cultural Events" /><div className="event-card-title-overlay"><h3>Cultural Events</h3><p>Cultural Excellence</p></div><div className="event-overlay"><p>From any season to any occasion, our cultural events are designed to boost team morale and productivity.</p><a href="/estimate/corporate-meeting" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
+              <div className="event-card fade-in" style={{ animationDelay: '0.4s' }}><div className="event-rank">4</div><img src="/images/f1.jpg" alt="Festival Planning" /><div className="event-card-title-overlay"><h3>Festival Planning</h3><p>Large-scale events</p></div><div className="event-overlay"><p>From music festivals to cultural celebrations, we handle all aspects of large-scale event production.</p><a href="/estimate/wedding" className="view-button">View <i className="fas fa-arrow-right"></i></a></div></div>
             </div>
             
             <div className={`hidden-services grid-container grid-cols-lg-4 grid-cols-md-2 ${showHiddenServices ? 'is-visible' : ''}`}>
@@ -613,7 +613,7 @@ function HomePage() {
                   <div className="event-rank">{service.rank}</div>
                   <img src={service.img} alt={service.alt} />
                   <div className="event-card-title-overlay"><h3>{service.title}</h3><p>{service.desc}</p></div>
-                  <div className="event-overlay"><p>{service.details}</p><a href="#" className="view-button">View <i className="fas fa-arrow-right"></i></a></div>
+                  <div className="event-overlay"><p>{service.details}</p><a href="/estimate/wedding" className="view-button">View <i className="fas fa-arrow-right"></i></a></div>
                 </div>
               ))}
             </div>
@@ -756,7 +756,7 @@ function HomePage() {
                     <div className="contact-info-item"><div className="icon"><i className="fas fa-envelope"></i></div><div><h4>Email Address</h4><p>info@eventhub.com</p></div></div>
                     <div className="contact-info-item"><div className="icon"><i className="fas fa-clock"></i></div><div><h4>Working Hours</h4><p>Monday - Friday: 9AM - 6PM</p></div></div>
                   </div>
-                  <div className="social-icon-group"><h4>Follow Us</h4><div style={{display: 'flex', gap: '1rem', marginLeft: '1rem'}}><a href="#" className="social-icon"><i className="fab fa-facebook-f"></i></a><a href="#" className="social-icon"><i className="fab fa-instagram"></i></a><a href="#" className="social-icon"><i className="fab fa-twitter"></i></a><a href="#" className="social-icon"><i className="fab fa-linkedin-in"></i></a></div></div>
+                  <div className="social-icon-group"><h4>Follow Us</h4><div style={{display: 'flex', gap: '1rem', marginLeft: '1rem'}}><a href="https://facebook.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-facebook-f"></i></a><a href="https://instagram.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-instagram"></i></a><a href="https://twitter.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-twitter"></i></a><a href="https://linkedin.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-linkedin-in"></i></a></div></div>
                 </div>
               </div>
             </div>
@@ -780,7 +780,7 @@ function HomePage() {
             <div>
               <div style={{marginBottom: '1.5rem'}}><span className="nav-logo-text" style={{color: 'white'}}>Event<span style={{color: 'var(--primary)'}}>Hub</span></span></div>
               <p>Creating extraordinary events and unforgettable experiences for our clients since 2015.</p>
-              <div className="social-icon-group" style={{marginTop: '1.5rem', gap: '1rem'}}><a href="#" className="social-icon"><i className="fab fa-facebook-f"></i></a><a href="#" className="social-icon"><i className="fab fa-instagram"></i></a><a href="#" className="social-icon"><i className="fab fa-twitter"></i></a><a href="#" className="social-icon"><i className="fab fa-linkedin-in"></i></a></div>
+              <div className="social-icon-group" style={{marginTop: '1.5rem', gap: '1rem'}}><a href="https://facebook.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-facebook-f"></i></a><a href="https://instagram.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-instagram"></i></a><a href="https://twitter.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-twitter"></i></a><a href="https://linkedin.com" className="social-icon" target="_blank" rel="noreferrer"><i className="fab fa-linkedin-in"></i></a></div>
             </div>
             <div>
               <h3>Quick Links</h3>
@@ -791,7 +791,7 @@ function HomePage() {
             <div>
               <h3>Services</h3>
               <ul className="footer-links-list">
-                <li><a href="#">Wedding Planning</a></li><li><a href="#">Corporate Events</a></li><li><a href="#">Birthday Parties</a></li><li><a href="#">Festivals & Concerts</a></li><li><a href="#">Private Events</a></li><li><a href="#">Custom Theme Events</a></li>
+                <li><a href="/estimate/wedding">Wedding Planning</a></li><li><a href="/estimate/corporate-meeting">Corporate Events</a></li><li><a href="/estimate/birthday-party">Birthday Parties</a></li><li><a href="/estimate/wedding">Festivals & Concerts</a></li><li><a href="/estimate/wedding">Private Events</a></li><li><a href="/estimate/wedding">Custom Theme Events</a></li>
               </ul>
             </div>
             <div>
@@ -803,7 +803,7 @@ function HomePage() {
           <div className="footer-bottom">
             <div className="footer-bottom-content">
               <p>© {new Date().getFullYear()} EventHub. All Rights Reserved.</p>
-              <div className="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+              <div className="footer-bottom-links"><a href="#contact">Privacy Policy</a><a href="#services">Terms of Service</a><a href="#about">Cookie Policy</a></div>
             </div>
           </div>
         </div>
